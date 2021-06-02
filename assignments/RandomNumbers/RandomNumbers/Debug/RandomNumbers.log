@@ -1,0 +1,3 @@
+﻿  RandomNumbers.cpp
+C:\Users\sophi\source\repos\RandomNumbers\RandomNumbers\RandomNumbers.cpp(11,12): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
+  RandomNumbers.vcxproj -> C:\Users\sophi\source\repos\RandomNumbers\Debug\RandomNumbers.exe
