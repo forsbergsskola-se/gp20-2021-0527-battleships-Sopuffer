@@ -5,6 +5,7 @@ int main()
 	srand(static_cast <unsigned int>(time(NULL)));
 	char board[rows][columns], playerBoard[rows][columns];
 	int sizeShip, ships;
+	int sizeOfShip[5] = { 1, 2, 3, 4, 5 };
 	for (int i = 0; i < rows; i++)
 	{
 		for (int j = 0; j < columns; j++)
@@ -14,7 +15,7 @@ int main()
 		}
 	}
 
-	cout << "BATTLESHIP!" << endl;
+	cout << "WELCOME TO BATTLESHIP!" << endl;
 	do {
 		cout << "How many battleships do you want? You can't have more than 3 or less than 1: " << endl;
 		cin >> ships;
@@ -27,6 +28,7 @@ int main()
 	}
 
 	int bombs = 25, rowGuess, colGuess;
+	char rowChar;
 	bool victory = false;
 	if (ships != 1) {
 		cout << "\nHere is the game board. There are " << ships << " enemy battleships hidden here. \n";
@@ -35,15 +37,69 @@ int main()
 		cout << "\nHere is the game board. There is " << ships << " enemy battleships hidden here. \n";
 	}
 	cout << "Input \"row\" and \"column\" to decide where to place your bomb. ";
-	cout << "For example, type \"1 10\" (row 1, column 10), to place a bomb in the top right corner. ";
+	cout << "For example, type \"a 10\" (row 1, column 10), to place a bomb in the top right corner. ";
 	cout << "You have 25 bombs. Good luck!" << endl;
-
 	for (int n = 1; n <= bombs && !victory; n++)
 	{
 		PrintBoard(playerBoard);
 		cout << "bombs #" << n << ", row and column: ";
-		cin >> rowGuess;
-		cin >> colGuess;
+		bool rowInput = false;
+
+		
+		while (!rowInput) {
+			cin >> rowChar;
+			cin >> colGuess;
+
+			if (rowChar != 'a' && rowChar != 'b' && rowChar != 'c' &&
+				rowChar != 'd' && rowChar != 'e' && rowChar != 'f' &&
+				rowChar != 'g' && rowChar != 'h' && rowChar != 'i' && rowChar != 'j'
+				){
+			
+				cout << "Invalid input. Please try again" << endl;
+				continue;
+				}
+			else if (colGuess != 1 && colGuess != 2 && colGuess != 3 &&
+				colGuess != 4 && colGuess != 5 && colGuess != 6 &&
+				colGuess != 7 && colGuess != 8 && colGuess != 9 && colGuess != 10) {
+				cout << "Invalid input. Please try again" << endl;
+				continue;
+				}
+			else {
+				switch (rowChar) {
+				case 'a':
+					rowGuess = 1;
+					break;
+				case 'b':
+					rowGuess = 2;
+					break;
+				case 'c':
+					rowGuess = 3;
+					break;
+				case 'd':
+					rowGuess = 4;
+					break;
+				case 'e':
+					rowGuess = 5;
+					break;
+				case 'f':
+					rowGuess = 6;
+					break;
+				case 'g':
+					rowGuess = 7;
+					break;
+				case 'h':
+					rowGuess = 8;
+					break;
+				case 'i':
+					rowGuess = 9;
+					break;
+				case 'j':
+					rowGuess = 10;
+					break;
+				}
+				rowInput = true;
+			}
+		}
 
 		if (board[rowGuess - 1][colGuess - 1] == 'S') {
 			cout << "Hit!" << endl;
